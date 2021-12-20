@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Memory Game{% endblock %}
+
+{% block body %}
+
+<div id="game" class="row mt-2">
+    <div class="col-lg-8">
+        <div id="game-board" class="card">
+            <div class="card-header">Memory Game</div>
+            <div class="card-body">
+                {% for cardRow in cards|batch(7) %}
+                    <div class="row">
+                        {% for colIndex, card in cardRow %}
+                            <div class="col game-cell">
+                                <div id="game-card-mask-{{ colIndex }}"
+                                     class="game-card-mask"
+                                     data-id="{{ card.id }}"
+                                     data-col="{{ colIndex }}"
+                                ></div>
+                                <div class="game-card {{ card.label }}"></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                 <div class="progress">
+                    <div id="game-progress-bar"
+                         class="progress-bar"
+                         role="progressbar"
+                         style="width: 100%;"
+                         aria-valuenow="{{ maxTimeSeconds }}"
+                         aria-valuemin="0"
+                         aria-valuemax="{{ maxTimeSeconds }}"
+                         data-valuenow="{{ maxTimeSeconds }}"
+                         data-start="0"
+                    >
+                    </div>
+                </div>
+                <div id="game-progress-text">180 secondes</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div id="game-score" class="card">
+            <div class="card-header">Les meilleurs temps</div>
+            <div class="card-body">
+                {% for key, historyGame in historyGames %}
+                    {{ key + 1 }} : {{ historyGame.duration }} secondes le {{ historyGame.createdAt|date('d/m/Y à H:i') }}<br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

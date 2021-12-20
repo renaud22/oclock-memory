@@ -1,0 +1,138 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #D3D3D3;
+}
+
+#game {
+    #game-board {
+        .game-cell {
+            padding: 3px;
+            overflow: hidden; // Permet de faire disparaitre le cache de la carte en le glissant sur le coté
+
+            .game-card {
+                height: 100%;
+                width: 100%;
+                background-image: url("../images/cards.png"); // L'image contenant tous les fruits
+                background-size: 100% auto;
+                border: solid 1px #D3D3D3;
+                border-radius: 100%;
+
+                // Pour chaque fruits, on va descendre à un autre niveau de notre image
+                &.redApple {
+                    background-position-y: -0.4%;
+                }
+
+                &.banana {
+                    background-position-y: 5.6%;
+                }
+
+                &.orange {
+                    background-position-y: 11.6%;
+                }
+
+                &.greenLemon {
+                    background-position-y: 17.5%;
+                }
+
+                &.pomegranate {
+                    background-position-y: 23.3%;
+                }
+
+                &.apricot {
+                    background-position-y: 29%;
+                }
+
+                &.lemon {
+                    background-position-y: 34.8%;
+                }
+
+                &.strawberry {
+                    background-position-y: 40.9%;
+                }
+
+                &.greenApple {
+                    background-position-y: 46.9%;
+                }
+
+                &.peach {
+                    background-position-y: 52.8%;
+                }
+
+                &.grape {
+                    background-position-y: 58.7%;
+                }
+
+                &.watermelon {
+                    background-position-y: 64.5%;
+                }
+
+                &.prune {
+                    background-position-y: 70.2%;
+                }
+
+                &.pear {
+                    background-position-y: 76.3%;
+                }
+
+                &.cherry {
+                    background-position-y: 82.4%;
+                }
+
+                &.raspberry {
+                    background-position-y: 88%;
+                }
+
+                &.mango {
+                    background-position-y: 94.1%;
+                }
+
+                &.mirabelle {
+                    background-position-y: 99.6%;
+                }
+            }
+
+            // On s'occupe de la partie qui cache la carte
+            .game-card-mask {
+                background-color: #D3D3D3;
+                background-image: url("../images/logoOClock.svg");
+                background-position: center;
+                background-size: 75%;
+                background-repeat: no-repeat;
+                border-radius: 100%;
+                z-index: 2;
+                float: right; // Permet de le rentre flottant, ce qui ne vas pas décaler la carte mais la laisser au même niveau
+                width: 100%;
+                height: 100%;
+                position: relative;
+                left: 0;
+                transition: all .3s; // Petite animation
+
+                // Si on a une de ces 2 classes, on décale le masque sur la droite
+                &.serie, &.validated {
+                    left: 102%;
+                }
+
+                &:not(.disabled):hover {
+                    background-color: #959595;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .progress {
+            font-size: .7rem;
+            height: 7px;
+            width: 102%;
+            margin-left: -1%;
+            margin-top: 10px;
+            margin-bottom: -10px;
+        }
+
+        #game-progress-text {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: -10px;
+        }
+    }
+}
